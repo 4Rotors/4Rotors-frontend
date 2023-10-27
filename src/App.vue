@@ -36,12 +36,13 @@
       </div>
     </header>
     <div class="d-flex align-items-center">
-        
+      <router-view/>
     </div>
   </div>
 </template>
 
 <script>
+
 
 export default {
   name: 'App',
