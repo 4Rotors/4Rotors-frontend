@@ -26,5 +26,9 @@ export default new VueRouter({
       path: "/track",
       component: () => import("@/views/track/Track.vue"),
     },
+    {
+      path: "/orders",
+      component: () => import("@/views/orders/OrdersList.vue"),
+    },
   ],
 });
