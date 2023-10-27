@@ -6,8 +6,9 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-8 border-form p-2 me-2" style="height: 72vh;">
-                    <yandex-map style="width: 100%; height: 100%" v-if="true"
-                        :coords="coords" @onClick="onClick"></yandex-map>
+                    <yandex-map style="width: 100%; height: 100%" v-if="true" :coords="coords" @onClick="onClick">
+                        <ymap-marker :coords="coords" marker-id="123" hint-content="Дрон" />
+                    </yandex-map>
                 </div>
 
                 <div class="col-3 border-form p-1 ms-4" style="height: 40vh;">
@@ -34,7 +35,7 @@
                         </div>
                         <div class="row ms-1 mt-4">
                             <div class="col-10 d-flex justify-content-center">
-                                <button  @onClick="onUpdateLocation" style="width: 100%;" class="btn btn-secondary">обновить
+                                <button @onClick="onUpdateLocation" style="width: 100%;" class="btn btn-secondary">обновить
                                     локацию</button>
                             </div>
                         </div>
@@ -52,6 +53,7 @@ export default {
     data: () => ({
         coords: [55.099943, 50.706567],
         track_number: '',
+        options: new GeoObject
     }),
     methods: {
         onClick(e) {
