@@ -14,5 +14,13 @@ export default new VueRouter({
       path: "/drones",
       component: () => import("@/views/drones/DronesList.vue"),
     },
+    {
+      path: "/drones/create",
+      component: () => import("@/views/drones/DroneCreate.vue"),
+    },
+    {
+      path: "/drones/:id/",
+      component: () => import("@/views/drones/DroneUpdate.vue"),
+    },
   ],
 });
