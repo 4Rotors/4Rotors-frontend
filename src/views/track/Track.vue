@@ -5,13 +5,12 @@
                 <p class="title text-center">Отслеживание доставок</p>
             </div>
             <div class="row justify-content-center">
-                <div class="col-8 border-form p-2 me-2" style="height: 75vh;">
-                    <yandex-map :coords="coords" @click="onClick">
-                        <ymap-marker markerId="123" :coords="coords"></ymap-marker>
-                    </yandex-map>
+                <div class="col-8 border-form p-2 me-2" style="height: 72vh;">
+                    <yandex-map style="width: 100%; height: 100%" v-if="true"
+                        :coords="coords" @onClick="onClick"></yandex-map>
                 </div>
 
-                <div class="col-3 border-form p-1 ms-4">
+                <div class="col-3 border-form p-1 ms-4" style="height: 40vh;">
                     <div class="row ms-1">
                         <div class="col-12">
                             <p class="fw-bold" style="font-size: 24px;">Отслеживание по номеру</p>
@@ -35,8 +34,8 @@
                         </div>
                         <div class="row ms-1 mt-4">
                             <div class="col-10 d-flex justify-content-center">
-                                <router-link to="/drones/create" style="width: 100%;" class="btn btn-secondary">обновить
-                                    локацию</router-link>
+                                <button  @onClick="onUpdateLocation" style="width: 100%;" class="btn btn-secondary">обновить
+                                    локацию</button>
                             </div>
                         </div>
                     </form>
@@ -51,12 +50,18 @@
 export default {
     name: 'Track',
     data: () => ({
-        coords: [54, 39],
+        coords: [55.099943, 50.706567],
         track_number: '',
     }),
     methods: {
         onClick(e) {
             this.coords = e.get('coords');
+        },
+        onGetTrackNumber(e) {
+
+        },
+        onUpdateLocation(e) {
+
         }
     }
 }
