@@ -21,7 +21,7 @@
                     </select>
                     <div class="row justify-content-center mt-6">
                         <div class="col-3 m-2">
-                            <input class="btn btn-secondary" type="submit" value="Создать" />
+                            <input class="btn btn-secondary" type="submit" value="Редактировать" />
                         </div>
                     </div>
                 </form>
