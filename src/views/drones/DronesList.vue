@@ -20,10 +20,10 @@
                         <div class="col-12">
                             <div class="row justify-content-center">
                                 <div class="col-5">
-                                    <input placeholder="от" class="form-control" type="text" v-model="login" />
+                                    <input placeholder="от" class="form-control" type="text" v-model="charge_from" />
                                 </div>
                                 <div class="col-5">
-                                    <input placeholder="до" class="form-control" type="text" v-model="login" />
+                                    <input placeholder="до" class="form-control" type="text" v-model="charge_to" />
                                 </div>
                             </div>
                         </div>
@@ -37,10 +37,10 @@
                         <div class="col-12">
                             <div class="row justify-content-center">
                                 <div class="col-5">
-                                    <input placeholder="от" class="form-control" type="text" v-model="login" />
+                                    <input placeholder="от" class="form-control" type="text" v-model="capacity_from" />
                                 </div>
                                 <div class="col-5">
-                                    <input placeholder="до" class="form-control" type="text" v-model="login" />
+                                    <input placeholder="до" class="form-control" type="text" v-model="capacity_to" />
                                 </div>
                             </div>
                         </div>
@@ -54,10 +54,10 @@
                         <div class="col-12">
                             <div class="row justify-content-center">
                                 <div class="col-5">
-                                    <input placeholder="от" class="form-control" type="text" v-model="login" />
+                                    <input placeholder="от" class="form-control" type="text" v-model="distance_from" />
                                 </div>
                                 <div class="col-5">
-                                    <input placeholder="до" class="form-control" type="text" v-model="login" />
+                                    <input placeholder="до" class="form-control" type="text" v-model="distance_to" />
                                 </div>
                             </div>
                         </div>
@@ -70,15 +70,18 @@
                     <div class="row ms-1">
                         <div class="col-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="на зарядке" id="flexCheckChecked"
+                                    v-model="status">
                                 <label class="form-check-label" for="flexCheckChecked">на зарядке</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="готов к вылету" id="flexCheckChecked"
+                                    v-model="status">
                                 <label class="form-check-label" for="flexCheckChecked">готов к вылету</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="в процессе доставки"
+                                    id="flexCheckChecked" v-model="status">
                                 <label class="form-check-label" for="flexCheckChecked">в процессе доставки</label>
                             </div>
                         </div>
@@ -91,18 +94,18 @@
                     <div class="row ms-1">
                         <div class="col-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="воздушный" id="flexCheckChecked" v-model="type">
                                 <label class="form-check-label" for="flexCheckChecked">воздушный</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="наземный" id="flexCheckChecked" v-model="type">
                                 <label class="form-check-label" for="flexCheckChecked">наземный</label>
                             </div>
                         </div>
                     </div>
                     <div class="row ms-1 mt-1">
                         <div class="col-12 d-flex justify-content-center">
-                            <button class="btn btn-secondary">Применить</button>
+                                <button @onClick="onFilterDrones" class="btn btn-secondary">Применить</button>
                         </div>
                     </div>
                 </div>
@@ -125,7 +128,7 @@
                         </div>
                         <div class="row ms-1">
                             <div class="col-10">
-                                <input placeholder="от" class="form-control" type="text" v-model="login" />
+                                <input placeholder="от" class="form-control" type="text" v-model="name_search" />
                             </div>
                         </div>
                         <div class="row ms-1">
@@ -135,12 +138,12 @@
                         </div>
                         <div class="row ms-1">
                             <div class="col-10">
-                                <input placeholder="от" class="form-control" type="text" v-model="login" />
+                                <input placeholder="от" class="form-control" type="text" v-model="id_search" />
                             </div>
                         </div>
                         <div class="row ms-1 mt-4">
                             <div class="col-10 d-flex justify-content-center">
-                                <input type="submit" class="btn btn-secondary" value="Найти">
+                                <button @onClick="onSearchDrones" class="btn btn-secondary">Найти</button>
                             </div>
                         </div>
                         <div class="row ms-1 mt-4">
@@ -176,28 +179,26 @@ export default {
                     status: "готов к вылету",
 
                 },
-                {
-                    id: 1,
-                    name: 'DJI Mini 2 SE',
-                    charge: 100,
-                    capacity: 500,
-                    distance: 1000,
-                    type: "воздушный",
-                    status: "готов к вылету",
-
-                },
-                {
-                    id: 1,
-                    name: 'DJI Mini 2 SE',
-                    charge: 100,
-                    capacity: 500,
-                    distance: 1000,
-                    type: "воздушный",
-                    status: "готов к вылету",
-
-                },
-            ]
+            ],
+            charge_from: '',
+            charge_to: '',
+            capacity_from: '',
+            capacity_to: '',
+            distance_from: '',
+            distance_to: '',
+            status: '',
+            type: '',
+            name_search: '',
+            id_search: '',
         }
+    },
+    methods: {
+        onFilterDrones(e) {
+
+        },
+        onSearchDrones(e) {
+
+        },
     }
 }
 </script>
@@ -217,5 +218,4 @@ export default {
     border-width: 2px;
     border-style: solid;
     border-radius: 10px;
-}
-</style>
+}</style>
