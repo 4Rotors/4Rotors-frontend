@@ -22,5 +22,9 @@ export default new VueRouter({
       path: "/drones/:id/",
       component: () => import("@/views/drones/DroneUpdate.vue"),
     },
+    {
+      path: "/track",
+      component: () => import("@/views/track/Track.vue"),
+    },
   ],
 });
