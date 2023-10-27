@@ -10,5 +10,9 @@ export default new VueRouter({
       path: "/",
       component: () => import("@/views/login/Login.vue"),
     },
+    {
+      path: "/drones",
+      component: () => import("@/views/drones/DronesList.vue"),
+    },
   ],
 });
