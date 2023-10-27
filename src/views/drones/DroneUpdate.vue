@@ -7,7 +7,7 @@
         </div>
         <div class="row justify-content-center border-form">
             <div class="col-12 p-5 d-flex justify-content-center">
-                <form @submit.prevent="onLoginSubmit">
+                <form @submit.prevent="onUpdateDrone">
                     <label class="form-label" for="name">Название дрона </label>
                     <input class="form-control" type="text" v-model="name" />
                     <label class="form-label" for="capacity">Грузоподъемность </label>
@@ -33,27 +33,42 @@
 <script>
 export default {
     name: 'DroneUpdate',
-    props: ['dron'],
     data() {
         return {
+            dron: {},
             name: '',
-            charge: 0,
             capacity: 0,
             distance: 0,
             type: '',
-            status: 'готов к вылету',
         }
     },
     mounted() {
-        this.name = this.dron.name;
-        this.charge = this.dron.charge;
-        this.capacity = this.dron.capacity;
-        this.distance = this.dron.distance;
-        this.type = this.dron.distance;
+        const flag = false;
+        if (flag) {
+            const headers = {
+                'accept': "application/json",
+                "Content-Type": "application/json",
+            };
+
+            axios.get(this.$url + 'drons/' + this.$router.id + '/', { headers })
+                .then(response => this.dron = response.data);
+        }
     },
     methods: {
-        onLoginSubmit() {
+        onUpdateDrone() {
+            const headers = {
+                'accept': "application/json",
+                "Content-Type": "application/json",
+            };
+            const data = {
+                name: this.name,
+                distance: this.distance,
+                capacity: this.capacity,
+                type: this.type
+            };
 
+            // axios.patch(this.$url + 'drons/' + this.$router.id + '/', { headers })
+                // .then(response => this.$router.push('/drones'));
         }
     }
 }

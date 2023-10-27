@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
                 <div class="col-8 border-form p-2 me-2" style="height: 72vh;">
                     <yandex-map style="width: 100%; height: 100%" v-if="true" :coords="coords" @onClick="onClick">
-                        <ymap-marker :coords="coords" marker-id="123" hint-content="Дрон" />
+                        <ymap-marker :coords="coords" :options="options" marker-id="123" hint-content="Дрон" />
                     </yandex-map>
                 </div>
 
@@ -51,9 +51,14 @@
 export default {
     name: 'Track',
     data: () => ({
-        coords: [55.099943, 50.706567],
+        coords: [51.656874, 39.205964],
         track_number: '',
-        options: new GeoObject
+        options: {
+            iconLayout: 'default#image',
+            iconImageHref: 'https://www.pinclipart.com/picdir/big/564-5647053_quadcopter-drone-logo-png-clipart.png',
+            iconImageSize: [35, 35],
+            iconImageOffset: [-15, -15]
+        }
     }),
     methods: {
         onClick(e) {

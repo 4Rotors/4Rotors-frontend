@@ -7,7 +7,7 @@
         </div>
         <div class="row justify-content-center border-form">
             <div class="col-12 p-5 d-flex justify-content-center">
-                <form @submit.prevent="onLoginSubmit">
+                <form @submit.prevent="onCreateDrone">
                     <label class="form-label" for="name">Название дрона </label>
                     <input class="form-control" type="text" v-model="name" />
                     <label class="form-label" for="capacity">Грузоподъемность </label>
@@ -36,16 +36,26 @@ export default {
     data() {
         return {
             name: '',
-            charge: 0,
             capacity: 0,
             distance: 0,
             type: '',
-            status: 'готов к вылету',
         }
     },
     methods: {
-        onLoginSubmit() {
+        onCreateDrone() {
+            const headers = {
+                'accept': "application/json",
+                "Content-Type": "application/json",
+            };
+            const data = {
+                name: this.name,
+                distance: this.distance,
+                capacity: this.capacity,
+                type: this.type
+            };
 
+            // axios.post(this.$url + 'drons/' + this.$router.id + '/', { headers })
+            // .then(response => this.$router.push('/drones'));
         }
     }
 }

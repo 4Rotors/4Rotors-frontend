@@ -5,6 +5,7 @@ import YmapPlugin from 'vue-yandex-maps'
 import 'bootstrap/dist/css/bootstrap.css';
 
 Vue.config.productionTip = false
+Vue.prototype.$url = "http://127.0.0.1:8080/";
 
 const settings = {
   apiKey: '99b31407-13bf-4821-9612-d7f14b3388e1',

@@ -5,7 +5,7 @@
                 <p class="title text-center">Заказы</p>
             </div>
             <div class="row justify-content-center">
-                <div class="col-3 border-form p-2 me-5"  style="height: 65vh;">
+                <div class="col-3 border-form p-2 me-5" style="height: 65vh;">
                     <div class="row ms-1">
                         <div class="col-12">
                             <p class="fw-bold" style="font-size: 24px;">Фильтры</p>
@@ -56,22 +56,25 @@
                     <div class="row ms-1">
                         <div class="col-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="GOING" id="flexCheckChecked"
+                                    v-model="status">
                                 <label class="form-check-label" for="flexCheckChecked">ожидает погрузки на дрон</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="IN_DELIVERY" id="flexCheckChecked"
+                                    v-model="status">
                                 <label class="form-check-label" for="flexCheckChecked">в пути с главного склада</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                    v-model="status">
                                 <label class="form-check-label" for="flexCheckChecked">в пути к заказчику</label>
                             </div>
                         </div>
                     </div>
                     <div class="row ms-1 mt-1">
                         <div class="col-12 d-flex justify-content-center">
-                            <button class="btn btn-secondary">Применить</button>
+                            <button @onClick="onFilterOrders" class="btn btn-secondary">Применить</button>
                         </div>
                     </div>
                 </div>
@@ -80,34 +83,27 @@
                     <Order v-for="d in order" v-bind:order="d" />
                 </div>
 
-                <div class="col-3 border-form p-1 ms-5"  style="height: 40vh;">
+                <div class="col-3 border-form p-1 ms-5" style="height: 40vh;">
                     <div class="row ms-1">
                         <div class="col-12">
                             <p class="fw-bold" style="font-size: 24px;">Поиск</p>
                         </div>
                     </div>
-                    <form>
-                        <div class="row ms-1">
-                            <div class="col-12">
-                                <p class="fw-medium" style="font-size: 24px;">По номеру</p>
-                            </div>
+                    <div class="row ms-1">
+                        <div class="col-12">
+                            <p class="fw-medium" style="font-size: 24px;">По номеру</p>
                         </div>
-                        <div class="row ms-1">
-                            <div class="col-10">
-                                <input placeholder="от" class="form-control" type="text" v-model="login" />
-                            </div>
+                    </div>
+                    <div class="row ms-1">
+                        <div class="col-10">
+                            <input placeholder="от" class="form-control" type="text" v-model="id_search" />
                         </div>
-                        <div class="row ms-1 mt-4">
-                            <div class="col-10 d-flex justify-content-center">
-                                <input type="submit" class="btn btn-secondary" value="Найти">
-                            </div>
+                    </div>
+                    <div class="row ms-1 mt-4">
+                        <div class="col-10 d-flex justify-content-center">
+                            <button @onClick="onSearchOrders" class="btn btn-secondary">Найти</button> 
                         </div>
-                        <div class="row ms-1 mt-4">
-                            <div class="col-10 d-flex justify-content-center">
-                                <router-link to="/drones/create" class="btn btn-secondary">Создать доставку</router-link>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -149,8 +145,35 @@ export default {
                     status: "Готов к транспортировке",
                     weight: 1000,
                 },
-            ]
+            ],
+            sum_from: '',
+            sum_to: '',
+            name_filter: '',
+            address_filter: '',
+            status: '',
+            id_search: '',
         }
+    },
+    methods: {
+        onFilterOrders(e) {
+            if (this.sum_from !== '' && this.sum_to !== '') {
+                this.order.filter((o) => o.sum >= this.sum_from && o.sum <= this.sum_to);
+            }
+            if (this.name_filter !== '') {
+                this.order.filter((o) => o.name.match('/' + this.name_filter + '/'));
+            }
+            if (this.address_filter !== '') {
+                this.order.filter((o) => o.address.match('/' + this.address_filter + '/'));
+            }
+            if (this.status !== '') {
+                this.order.filter((o) => o.status == this.status);
+            }
+        },
+        onSearchOrders(e) {
+            if (this.id_search !== '') {
+                this.order.filter((o) => o.id == this.id_search);
+            }
+        },
     }
 }
 </script>

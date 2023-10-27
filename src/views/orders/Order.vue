@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'order',
     props: ['order'],
@@ -31,7 +33,7 @@ export default {
     },
     methods: {
         onSendDrone(e) {
-
+            
         }
     }
 }
