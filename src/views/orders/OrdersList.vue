@@ -20,10 +20,10 @@
                         <div class="col-12">
                             <div class="row justify-content-center">
                                 <div class="col-5">
-                                    <input placeholder="от" class="form-control" type="text" v-model="login" />
+                                    <input placeholder="от" class="form-control" type="text" v-model="sum_from" />
                                 </div>
                                 <div class="col-5">
-                                    <input placeholder="до" class="form-control" type="text" v-model="login" />
+                                    <input placeholder="до" class="form-control" type="text" v-model="sum_to" />
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="row ms-1">
                         <div class="col-10">
-                            <input placeholder="название" class="form-control" type="text" v-model="login" />
+                            <input placeholder="название" class="form-control" type="text" v-model="name_filter" />
                         </div>
                     </div>
                     <div class="row ms-1">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="row ms-1">
                         <div class="col-10">
-                            <input placeholder="адрес" class="form-control" type="text" v-model="login" />
+                            <input placeholder="адрес" class="form-control" type="text" v-model="address_filter" />
                         </div>
                     </div>
                     <div class="row ms-1 mt-1">
