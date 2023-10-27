@@ -60,8 +60,8 @@ export default {
 }
 
 .border-form {
-    border-color: black;
-    border-width: medium;
+    border-color: #808080;
+    border-width: 2px;
     border-style: solid;
     border-radius: 10px;
 }
