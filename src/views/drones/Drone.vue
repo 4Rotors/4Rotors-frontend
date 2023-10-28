@@ -1,7 +1,7 @@
 <template>
     <div class="row border-form m-2 p-1">
         <div class="col-6 d-flex align-items-center">
-            <img alt="Dron" src="../../assets/dron.png">
+            <img alt="Dron" src="../../assets/dron.png"  width="200" height="50">
         </div>
         <div class="col-6">
             <p class="fw-bold" style="font-size: 24px;">{{ dron.name }}(#{{ dron.id }})</p>
@@ -18,7 +18,6 @@
 </div></template>
 
 <script>
-import axios from 'axios';
 
 export default {
     name: 'Drone',

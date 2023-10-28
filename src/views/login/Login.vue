@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'Login',
     data() {
@@ -43,7 +45,19 @@ export default {
     },
     methods: {
         onLoginSubmit() {
+            const headers = {
+                'accept': "application/json",
+                "Content-Type": "application/json",
+            };
 
+            const data = {
+                login: this.login,
+                password: this.password,
+            }
+
+            axios.post(this.$url + 'api/auth/signIn', data, { headers })
+                .then(response => localStorage.setItem('token', response.data.accessToken));
+            this.$router.push('/drones');
         }
     }
 }

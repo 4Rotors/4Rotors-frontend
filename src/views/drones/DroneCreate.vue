@@ -46,6 +46,7 @@ export default {
             const headers = {
                 'accept': "application/json",
                 "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + localStorage.token,
             };
             const data = {
                 name: this.name,
@@ -54,8 +55,8 @@ export default {
                 type: this.type
             };
 
-            // axios.post(this.$url + 'drons/' + this.$router.id + '/', { headers })
-            // .then(response => this.$router.push('/drones'));
+            axios.post(this.$url + 'api/drones/create', data, { headers })
+                .then(response => this.$router.push('/drones'));
         }
     }
 }

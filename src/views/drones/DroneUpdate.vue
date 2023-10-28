@@ -19,9 +19,14 @@
                         <option :value="воздушный">воздушный</option>
                         <option :value="наземный">наземный</option>
                     </select>
-                    <div class="row justify-content-center mt-6">
-                        <div class="col-3 m-2">
+                    <div class="row mt-6">
+                        <div class="col m-2">
                             <input class="btn btn-secondary" type="submit" value="Редактировать" />
+                        </div>
+                        <div class="col m-2">
+                            <form @submit.prevent="onDeleteDrone">
+                                <input class="btn btn-danger" type="submit" value="Удалить" />
+                            </form>
                         </div>
                     </div>
                 </form>
@@ -48,9 +53,10 @@ export default {
             const headers = {
                 'accept': "application/json",
                 "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + localStorage.token,
             };
 
-            axios.get(this.$url + 'drons/' + this.$router.id + '/', { headers })
+            axios.get(this.$url + 'api/drones/' + this.$router.id, { headers })
                 .then(response => this.dron = response.data);
         }
     },
@@ -67,8 +73,8 @@ export default {
                 type: this.type
             };
 
-            // axios.patch(this.$url + 'drons/' + this.$router.id + '/', { headers })
-                // .then(response => this.$router.push('/drones'));
+            // axios.patch(this.$url + 'drones/' + this.$router.id + '/update', data { headers })
+            // .then(response => this.$router.push('/drones'));
         }
     }
 }

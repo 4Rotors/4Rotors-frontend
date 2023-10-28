@@ -116,7 +116,7 @@
                     <Drone v-for="d in drones" v-bind:dron="d" />
                 </div>
 
-                <div class="col-3 border-form p-1 ms-5" style="height: 47vh;">
+                <div class="col-3 border-form p-1 ms-5" style="height: 50vh;">
                     <div class="row ms-1">
                         <div class="col-12">
                             <p class="fw-bold" style="font-size: 24px;">Поиск</p>
@@ -221,9 +221,10 @@ export default {
             const headers = {
                 'accept': "application/json",
                 "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + localStorage.token,
             };
 
-            axios.get(this.$url + 'drons/', { headers })
+            axios.get(this.$url + 'api/drones', { headers })
                 .then(response => this.drones = response.data);
         }
     },

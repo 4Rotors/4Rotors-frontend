@@ -5,7 +5,7 @@
                 <p class="title text-center">Заказы</p>
             </div>
             <div class="row justify-content-center">
-                <div class="col-3 border-form p-2 me-5" style="height: 65vh;">
+                <div class="col-3 border-form p-2 me-5" style="height: 70vh;">
                     <div class="row ms-1">
                         <div class="col-12">
                             <p class="fw-bold" style="font-size: 24px;">Фильтры</p>
@@ -58,17 +58,17 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="GOING" id="flexCheckChecked"
                                     v-model="status">
-                                <label class="form-check-label" for="flexCheckChecked">ожидает погрузки на дрон</label>
+                                <label class="form-check-label" for="flexCheckChecked">Собирается</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="IN_DELIVERY" id="flexCheckChecked"
+                                <input class="form-check-input" type="checkbox" value="IN_WAY" id="flexCheckChecked"
                                     v-model="status">
-                                <label class="form-check-label" for="flexCheckChecked">в пути с главного склада</label>
+                                <label class="form-check-label" for="flexCheckChecked">В пути</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                <input class="form-check-input" type="checkbox" value="DELIVERED" id="flexCheckChecked"
                                     v-model="status">
-                                <label class="form-check-label" for="flexCheckChecked">в пути к заказчику</label>
+                                <label class="form-check-label" for="flexCheckChecked">Доставлен</label>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="row ms-1 mt-4">
                         <div class="col-10 d-flex justify-content-center">
-                            <button @onClick="onSearchOrders" class="btn btn-secondary">Найти</button> 
+                            <button @onClick="onSearchOrders" class="btn btn-secondary">Найти</button>
                         </div>
                     </div>
                 </div>
@@ -152,6 +152,19 @@ export default {
             address_filter: '',
             status: '',
             id_search: '',
+        }
+    },
+    mounted() {
+        const flag = false;
+        if (flag) {
+            const headers = {
+                'accept': "application/json",
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + localStorage.token,
+            };
+
+            axios.get(this.$url + 'orders/', { headers })
+                .then(response => this.drones = response.data);
         }
     },
     methods: {
